@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/styles.css">
+    <title>Weather forcast</title>
+</head>
+<body>
+    <!-- <h1>Weather</h1> -->
+    <div id="circle1" class="circle"></div>
+    <div id="circle2" class="circle"></div>
+    <div id="container">
+        <div id="textSearch">
+            <form action="/" method="get">
+                <input type="text" placeholder="Enter a city name" id="name" name="city">
+                <button id="Search" type="submit">Search</button>
+            </form>
+        </div>
+        <div id="weatherOutput">
+            <% if (weatherData && !weatherData.error) { %>
+                <h2><%= weatherData.name %></h2>
+                <h3><%= weatherData.weather %></h3>
+                <p id="description"><%= weatherData.description %></p>
+                <img src="<%= weatherData.icon %>" alt="Weather Icon">
+                <p id="temperature"><%= weatherData.temperature %>°C</p>
+                <div class="min-max-container">
+                    <p id="min">min<br><%= weatherData.temp_min %>°C</p>
+                    <div class="vertical-line"></div>
+                    <p id="max">max<br><%= weatherData.temp_max %>°C</p>
+                </div>
+            <% } %>
+
+            <% if(weatherData && weatherData.error) { %>
+                <p><%= weatherData.error %></p>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>
